@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10 А — МБОУ «Габишевская СОШ имени М.А. Гареева»</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    line-height: 1.6;
+    color: #f0e6e6;
+    background-color: #1a0a0e;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(128, 0, 32, 0.25) 0%, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(80, 0, 20, 0.3) 0%, transparent 45%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%234d0e1a' stroke-width='0.6' opacity='0.35'%3E%3Cpath d='M0 30h60M30 0v60'/%3E%3C/g%3E%3C/svg%3E");
+    background-attachment: fixed;
+  }
+
+  header {
+    background: linear-gradient(135deg, #2b0a12 0%, #4d0e1a 50%, #1a0509 100%);
+    color: #fff;
+    padding: 70px 20px;
+    text-align: center;
+    border-bottom: 3px solid #800020;
+    position: relative;
+    overflow: hidden;
+  }
+  header::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='20' cy='20' r='1.2' fill='%23a83248' opacity='0.35'/%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  header h1 { font-size: 2.6rem; margin-bottom: 10px; letter-spacing: 1px; text-shadow: 0 2px 12px rgba(128,0,32,0.6); }
+  header p { font-size: 1.1rem; opacity: 0.85; max-width: 800px; margin: 0 auto; }
+
+  nav {
+    background: rgba(26, 5, 9, 0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid #4d0e1a;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  nav ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    list-style: none;
+  }
+  nav a {
+    display: block;
+    padding: 16px 22px;
+    text-decoration: none;
+    color: #e8c8cf;
+    font-weight: 600;
+    position: relative;
+    transition: color 0.3s;
+    cursor: pointer;
+  }
+  nav a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 8px;
+    width: 0;
+    height: 2px;
+    background: #a83248;
+    transition: width 0.3s, left 0.3s;
+  }
+  nav a:hover, nav a.active { color: #fff; }
+  nav a:hover::after, nav a.active::after { width: 70%; left: 15%; }
+
+  .page {
+    display: none;
+    max-width: 1050px;
+    margin: 0 auto;
+    padding: 55px 20px;
+    animation: fadeIn 0.5s ease;
+  }
+  .page.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  h2 {
+    font-size: 1.9rem;
+    margin-bottom: 25px;
+    color: #e8c8cf;
+    border-left: 5px solid #800020;
+    padding-left: 16px;
+    text-shadow: 0 0 18px rgba(128,0,32,0.4);
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 20px;
+  }
+  .card {
+    background: linear-gradient(145deg, rgba(45,10,18,0.95), rgba(26,5,9,0.95));
+    border: 1px solid #4d0e1a;
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+    transition: transform 0.35s, box-shadow 0.35s, border-color 0.35s;
+  }
+  .card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(128,0,32,0.35);
+    border-color: #a83248;
+  }
+  .card h3 { color: #f0c8d0; margin-bottom: 8px; font-size: 1.1rem; }
+  .card p { color: #c9a8b0; font-size: 0.95rem; }
+
+  .news-item {
+    background: rgba(45,10,18,0.9);
+    border: 1px solid #4d0e1a;
+    border-left: 4px solid #800020;
+    border-radius: 12px;
+    padding: 22px;
+    margin-bottom: 18px;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .news-item:hover { transform: translateX(6px); border-left-color: #a83248; }
+  .news-item .date { color: #a83248; font-size: 0.9rem; font-weight: 600; }
+
+  .contacts a {
+    display: inline-block;
+    margin: 8px 18px 8px 0;
+    color: #e8c8cf;
+    font-weight: 600;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .contacts a:hover { color: #fff; border-bottom-color: #a83248; }
+
+  footer {
+    background: linear-gradient(135deg, #1a0509, #2b0a12);
+    color: #c9a8b0;
+    text-align: center;
+    padding: 28px;
+    margin-top: 40px;
+    border-top: 2px solid #4d0e1a;
+    font-size: 0.95rem;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>10 А класс</h1>
+  <p>МБОУ «Габишевская средняя общеобразовательная школа имени М.А. Гареева»</p>
+</header>
+
+<nav>
+  <ul>
+    <li><a class="nav-link active" data-page="home">Главная</a></li>
+    <li><a class="nav-link" data-page="students">Ученики</a></li>
+    <li><a class="nav-link" data-page="teachers">Учителя</a></li>
+    <li><a class="nav-link" data-page="news">Новости</a></li>
+    <li><a class="nav-link" data-page="contacts">Контакты</a></li>
+  </ul>
+</nav>
+
+<!-- ГЛАВНАЯ -->
+<div class="page active" id="page-home">
+  <h2>О нашем классе</h2>
+  <p>Мы — дружный 10 А класс МБОУ «Габишевская средняя общеобразовательная школа имени М.А. Гареева». В нашем коллективе <strong>17 учеников</strong>, с нами работают <strong>9 учителей</strong> и наш классный руководитель. Мы вместе учимся, участвуем в школьных мероприятиях и поддерживаем друг друга.</p>
+</div>
+
+<!-- УЧЕНИКИ -->
+<div class="page" id="page-students">
+  <h2>Ученики 10 А</h2>
+  <div class="cards">
+    <div class="card"><h3>Ученик 1</h3><p>Увлечение: —</p></div>
+    <div class="card"><h3>Ученик 2</h3><p>Увлечение: —</p></div>
+    <div class="card"><h3>Ученик 3</h3><p>Увлечение: —</p></div>
+    <div class="card"><h3>Ученик 4</h3><p>Увлечение: —</p></div>
+    <div class="card"><h3>Ученик 5</h3><p>Увлечение: —</p></div>
+    <div class="card"><h3>Ученик 6</h3><p>Увлечение: —</p></div>
+    <div class="card"><h3>Ученик 7</h3><p>Увлечение: —</p></div>
+    <div class="card"><h3>Ученик 8</h3><p>Увлечение: —</p></div>
+    <div class="card"><h3>Ученик 9</h3><p>Увлечение: —</p></div>
+    <div class="card"><h3>Ученик 10</h3><p>Увлечение: —</p></div>
+    <div class="card"><h3>Ученик 11</h3><p>Увлечение: —</p></div>
+    <div class="card"><h3>Ученик 12</h3><p>Увлечение: —</p></div>
+    <div class="card"><h3>Ученик 13</h3><p>Увлечение: —</p></div>
+    <div class="card"><h3>Ученик 14</h3><p>Увлечение: —</p></div>
+    <div class="card"><h3>Ученик 15</h3><p>Увлечение: —</p></div>
+    <div class="card"><h3>Ученик 16</h3><p>Увлечение: —</p></div>
+    <div class="card"><h3>Ученик 17</h3><p>Увлечение: —</p></div>
+  </div>
+</div>
+
+<!-- УЧИТЕЛЯ -->
+<div class="page" id="page-teachers">
+  <h2>Классный руководитель</h2>
+  <div class="cards">
+    <div class="card"><h3>Имя Отчество</h3><p>Классный руководитель 10 А</p></div>
+  </div>
+  <h2 style="margin-top:40px;">Учителя-предметники</h2>
+  <div class="cards">
+    <div class="card"><h3>Учитель 1</h3><p>Математика</p></div>
+    <div class="card"><h3>Учитель 2</h3><p>Русский язык и литература</p></div>
+    <div class="card"><h3>Учитель 3</h3><p>История</p></div>
+    <div class="card"><h3>Учитель 4</h3><p>Физика</p></div>
+    <div class="card"><h3>Учитель 5</h3><p>Химия</p></div>
+    <div class="card"><h3>Учитель 6</h3><p>Биология</p></div>
+    <div class="card"><h3>Учитель 7</h3><p>Английский язык</p></div>
+    <div class="card"><h3>Учитель 8</h3><p>Информатика</p></div>
+    <div class="card"><h3>Учитель 9</h3><p>Физическая культура</p></div>
+  </div>
+</div>
+
+<!-- НОВОСТИ -->
+<div class="page" id="page-news">
+  <h2>Последние события</h2>
+  <div class="news-item">
+    <div class="date">1 сентября 2025</div>
+    <p>Начало учебного года! Мы перешли в 10 класс.</p>
+  </div>
+  <div class="news-item">
+    <div class="date">15 октября 2025</div>
+    <p>Участие в школьном конкурсе «Осенний бал».</p>
+  </div>
+  <div class="news-item">
+    <div class="date">20 ноября 2025</div>
+    <p>Экскурсия в музей — отличный день вместе!</p>
+  </div>
+</div>
+
+<!-- КОНТАКТЫ -->
+<div class="page" id="page-contacts">
+  <h2>Мы на связи</h2>
+  <p class="contacts">
+    <a href="#">Группа ВКонтакте</a>
+    <a href="#">Telegram</a>
+    <a href="mailto:email@example.com">Email</a>
+  </p>
+</div>
+
+<footer>© 2025 10 А класс, МБОУ «Габишевская СОШ имени М.А. Гареева»</footer>
+
+<script>
+  const links = document.querySelectorAll('.nav-link');
+  const pages = document.querySelectorAll('.page');
+
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      const target = link.dataset.page;
+
+      links.forEach(l => l.classList.remove('active'));
+      pages.forEach(p => p.classList.remove('active'));
+
+      link.classList.add('active');
+      document.getElementById('page-' + target).classList.add('active');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+</script>
+
+</body>
+</html>
